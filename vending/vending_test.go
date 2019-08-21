@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Balance_0(t *testing.T) {
-	expetedItem, expetedBalance := "DW", 0
+func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Change_0(t *testing.T) {
+	expectedItem, expectedChange := "DW", 0
 	drink := "DW"
 	drinks := map[string]int{
 		"SD": 25,
@@ -19,16 +19,16 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Balance_0(t *t
 
 	actualItem, actualBalance := vendingMachine.BuyDrink(drink)
 
-	if expetedItem != actualItem {
-		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
+	if expectedItem != actualItem {
+		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
-	if expetedBalance != actualBalance {
-		t.Errorf("Expect %d but got %d", expetedBalance, actualBalance)
+	if expectedChange != actualBalance {
+		t.Errorf("Expect %d but got %d", expectedChange, actualBalance)
 	}
 }
 
 func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Balance_5(t *testing.T) {
-	expetedItem, expetedBalance := "CF", 5
+	expectedItem, expectedBalance := "CF", 5
 	dirnk := "CF"
 	drinks := map[string]int{
 		"SD": 25,
@@ -42,11 +42,11 @@ func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Balance_5(t *
 
 	actualItem, actualBalance := vendingMachine.BuyDrink(dirnk)
 
-	if expetedItem != actualItem {
-		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
+	if expectedItem != actualItem {
+		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
-	if expetedBalance != actualBalance {
-		t.Errorf("Expect %d but got %d", expetedBalance, actualBalance)
+	if expectedBalance != actualBalance {
+		t.Errorf("Expect %d but got %d", expectedBalance, actualBalance)
 	}
 }
 
@@ -135,6 +135,22 @@ func Test_GetDrinkPrice_Input_Drink_CF_Should_Be_15(t *testing.T) {
 	actual := vendingMachine.getDrinkPrice(drink)
 	if expect != actual {
 		t.Errorf("Expect %d but got %d", expect, actual)
+	}
+}
+
+func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
+	expected := 20
+	coin := "T"
+	vendingMachine := VendingMachine{
+		TotalBalance: 0,
+	}
+	vendingMachine.InsertCoin(coin)
+	vendingMachine.InsertCoin(coin)
+
+	actual := vendingMachine.TotalBalance
+
+	if expected != actual {
+		t.Errorf("Expect %d but got %d", expected, actual)
 	}
 }
 
