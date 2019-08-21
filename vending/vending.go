@@ -15,7 +15,7 @@ func (vendingMachine VendingMachine) BuyDrink(item string) (string, int) {
 }
 
 func (vendingMachine VendingMachine) canBuyDrink(drinkPrice int) bool {
-	if vendingMachine.TotalBalance > drinkPrice {
+	if vendingMachine.TotalBalance >= drinkPrice {
 		return true
 	}
 	return false
