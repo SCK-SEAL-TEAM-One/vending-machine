@@ -140,12 +140,26 @@ func Test_GetDrinkPrice_Input_Drink_CF_Should_Be_15(t *testing.T) {
 
 func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
 	expected := 20
-	coin := "T"
 	vendingMachine := VendingMachine{
 		TotalBalance: 0,
 	}
-	vendingMachine.InsertCoin(coin)
-	vendingMachine.InsertCoin(coin)
+	vendingMachine.InsertCoin("T")
+	vendingMachine.InsertCoin("T")
+
+	actual := vendingMachine.TotalBalance
+	if expected != actual {
+		t.Errorf("Expect %d but got %d", expected, actual)
+	}
+}
+
+func Test_InsertCoin_Input_F_TW_O_Should_Be_8(t *testing.T) {
+	expected := 8
+	vendingMachine := VendingMachine{
+		TotalBalance: 0,
+	}
+	vendingMachine.InsertCoin("F")
+	vendingMachine.InsertCoin("TW")
+	vendingMachine.InsertCoin("O")
 
 	actual := vendingMachine.TotalBalance
 	if expected != actual {
