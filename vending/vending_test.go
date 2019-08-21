@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Balance_0(t *testing.T) {
-	expetedItem, expetedBalance := "DW", 0
+func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *testing.T) {
+	expetedItem, expetedChange := "DW", []string{}
 	drink := "DW"
 	drinks := map[string]int{
 		"SD": 25,
@@ -17,18 +17,18 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Balance_0(t *t
 		Drinks:       drinks,
 	}
 
-	actualItem, actualBalance := vendingMachine.BuyDrink(drink)
+	actualItem, actualChange := vendingMachine.BuyDrink(drink)
 
 	if expetedItem != actualItem {
 		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
 	}
-	if expetedBalance != actualBalance {
-		t.Errorf("Expect %d but got %d", expetedBalance, actualBalance)
+	if expetedChange != actualChange {
+		t.Errorf("Expect %d but got %d", expetedChange, actualChange)
 	}
 }
 
-func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Balance_5(t *testing.T) {
-	expetedItem, expetedBalance := "CF", 5
+func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *testing.T) {
+	expetedItem, expetedChange := "CF", []string{"F"}
 	dirnk := "CF"
 	drinks := map[string]int{
 		"SD": 25,
@@ -40,13 +40,13 @@ func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Balance_5(t *
 		Drinks:       drinks,
 	}
 
-	actualItem, actualBalance := vendingMachine.BuyDrink(dirnk)
+	actualItem, actualChange := vendingMachine.BuyDrink(dirnk)
 
 	if expetedItem != actualItem {
 		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
 	}
-	if expetedBalance != actualBalance {
-		t.Errorf("Expect %d but got %d", expetedBalance, actualBalance)
+	if expetedChange != actualChange {
+		t.Errorf("Expect %d but got %d", expetedChange, actualChange)
 	}
 }
 
