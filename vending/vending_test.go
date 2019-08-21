@@ -21,6 +21,23 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_Balance_0(t *t
 	}
 }
 
+func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Balance_5(t *testing.T) {
+	expetedItem, expetedBalance := "CF", 5
+	item := "CF"
+	vendingMachine := VendingMachine{
+		TotalBalance: 20,
+	}
+
+	actualItem, actualBalance := vendingMachine.BuyDrink(item)
+
+	if expetedItem != actualItem {
+		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
+	}
+	if expetedBalance != actualBalance {
+		t.Errorf("Expect %d but got %d", expetedBalance, actualBalance)
+	}
+}
+
 func Test_CalculateChange_Input_TotalBalance_20_DrinkPrice_15_Should_Be_5(t *testing.T) {
 	expect := 5
 	vendingMachine := VendingMachine{
