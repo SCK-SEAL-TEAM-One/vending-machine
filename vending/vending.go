@@ -8,3 +8,7 @@ type VendingMachine struct {
 func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
 	return vendingMachine.TotalBalance - drinkPrice
 }
+
+func (vendingMachine VendingMachine) getDrinkPrice(drink string) int {
+	return 15
+}
