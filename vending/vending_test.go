@@ -137,3 +137,23 @@ func Test_GetDrinkPrice_Input_Drink_CF_Should_Be_15(t *testing.T) {
 		t.Errorf("Expect %d but got %d", expect, actual)
 	}
 }
+
+func Test_GetCoinValue_Input_Coin_F_Should_Be_5(t *testing.T) {
+	expected := 5
+	coin := "F"
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
+	vendingMachine := VendingMachine{
+		Coins: coins,
+	}
+
+	actual := vendingMachine.getCoinValue(coin)
+
+	if expected != actual {
+		t.Errorf("Expect %d but got %d", expected, actual)
+	}
+}
