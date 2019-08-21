@@ -12,11 +12,20 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *t
 		"CF": 15,
 		"DW": 8,
 	}
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
 	vendingMachine := VendingMachine{
-		TotalBalance: 8,
-		Drinks:       drinks,
+		Drinks: drinks,
+		Coins:  coins,
 	}
 
+	vendingMachine.InsertCoin("F")
+	vendingMachine.InsertCoin("TW")
+	vendingMachine.InsertCoin("O")
 	actualItem, actualChange := vendingMachine.BuyDrink(drink)
 
 	if expetedItem != actualItem {
@@ -35,11 +44,19 @@ func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *t
 		"CF": 15,
 		"DW": 8,
 	}
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
 	vendingMachine := VendingMachine{
-		TotalBalance: 20,
-		Drinks:       drinks,
+		Drinks: drinks,
+		Coins:  coins,
 	}
 
+	vendingMachine.InsertCoin("T")
+	vendingMachine.InsertCoin("T")
 	actualItem, actualChange := vendingMachine.BuyDrink(dirnk)
 
 	if expetedItem != actualItem {
