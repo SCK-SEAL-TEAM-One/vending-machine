@@ -29,3 +29,21 @@ func Test_CalculateChange_Input_TotalBalance_8_DrinkPrice_8_Should_Be_0(t *testi
 		t.Errorf("Expect %d but got %d", expect, actual)
 	}
 }
+
+func Test_GetDrinkPrice_Input_Drink_CF_Should_Be_15(t *testing.T) {
+	expect := 15
+	drink := "CF"
+	drinks := map[string]int{
+		"SD": 25,
+		"CF": 15,
+		"DW": 8,
+	}
+	vendingMachine := VendingMachine{
+		Drinks: drinks,
+	}
+
+	actual := vendingMachine.getDrinkPrice(drink)
+	if expect != actual {
+		t.Errorf("Expect %d but got %d", expect, actual)
+	}
+}
