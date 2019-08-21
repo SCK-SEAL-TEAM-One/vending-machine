@@ -1,11 +1,12 @@
 package vending
 
 import (
+	"reflect"
 	"testing"
 )
 
 func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *testing.T) {
-	expetedItem, expetedChange := "DW", []string{}
+	expectedItem, expectedChange := "DW", []string{}
 	drink := "DW"
 	drinks := map[string]int{
 		"SD": 25,
@@ -28,16 +29,16 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *t
 	vendingMachine.InsertCoin("O")
 	actualItem, actualChange := vendingMachine.BuyDrink(drink)
 
-	if expetedItem != actualItem {
-		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
+	if expectedItem != actualItem {
+		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
-	if expetedChange != actualChange {
-		t.Errorf("Expect %d but got %d", expetedChange, actualChange)
+	if reflect.DeepEqual(expectedChange, actualChange) {
+		t.Errorf("Expect %v but got %v", expectedChange, actualChange)
 	}
 }
 
 func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *testing.T) {
-	expetedItem, expetedChange := "CF", []string{"F"}
+	expectedItem, expectedChange := "CF", []string{"F"}
 	dirnk := "CF"
 	drinks := map[string]int{
 		"SD": 25,
@@ -59,11 +60,12 @@ func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *t
 	vendingMachine.InsertCoin("T")
 	actualItem, actualChange := vendingMachine.BuyDrink(dirnk)
 
-	if expetedItem != actualItem {
-		t.Errorf("Expect %s but got %s", expetedItem, actualItem)
+	if expectedItem != actualItem {
+		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
-	if expetedChange != actualChange {
-		t.Errorf("Expect %d but got %d", expetedChange, actualChange)
+
+	if reflect.DeepEqual(expectedChange, actualChange) {
+		t.Errorf("Expect %v but got %v", expectedChange, actualChange)
 	}
 }
 
@@ -170,6 +172,35 @@ func Test_GetChangeCoins_Input_Change_10_Should_Be_T(t *testing.T) {
 
 	actual := vendingMachine.getChangeCoins(change)
 
+	if reflect.DeepEqual(expected, actual) {
+		t.Errorf("Expect %v but got %v", expected, actual)
+	}
+}
+
+func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
+	expected := 20
+	vendingMachine := VendingMachine{
+		TotalBalance: 0,
+	}
+	vendingMachine.InsertCoin("T")
+	vendingMachine.InsertCoin("T")
+
+	actual := vendingMachine.TotalBalance
+	if expected != actual {
+		t.Errorf("Expect %d but got %d", expected, actual)
+	}
+}
+
+func Test_InsertCoin_Input_F_TW_O_Should_Be_8(t *testing.T) {
+	expected := 8
+	vendingMachine := VendingMachine{
+		TotalBalance: 0,
+	}
+	vendingMachine.InsertCoin("F")
+	vendingMachine.InsertCoin("TW")
+	vendingMachine.InsertCoin("O")
+
+	actual := vendingMachine.TotalBalance
 	if expected != actual {
 		t.Errorf("Expect %d but got %d", expected, actual)
 	}

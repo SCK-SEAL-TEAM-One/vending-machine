@@ -30,3 +30,20 @@ func (vendingMachine VendingMachine) getDrinkPrice(drink string) int {
 func (vendingMachine VendingMachine) getChangeCoins(change int) []string {
 	return []string{"T"}
 }
+
+func (vendingMachine *VendingMachine) InsertCoin(coin string) {
+	vendingMachine.TotalBalance += getCoinsValue(coin)
+}
+
+func getCoinsValue(coin string) int {
+	if coin == "O" {
+		return 1
+	}
+	if coin == "TW" {
+		return 2
+	}
+	if coin == "F" {
+		return 5
+	}
+	return 10
+}
