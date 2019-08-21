@@ -15,8 +15,11 @@ func (vendingMachine VendingMachine) getDrinkPrice(item string) int {
 	return 8
 }
 
-func (vendingMachine VendingMachine) canBuyDrink(price int) bool {
-	return true
+func (vendingMachine VendingMachine) canBuyDrink(drinkPrice int) bool {
+	if vendingMachine.TotalBalance > drinkPrice {
+		return true
+	}
+	return false
 }
 
 func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
