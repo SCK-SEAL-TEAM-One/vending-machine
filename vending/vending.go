@@ -8,3 +8,7 @@ type VendingMachine struct {
 func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
 	return 5
 }
+
+func (vendingMachine VendingMachine) canBuyDrink(drinkPrice int) bool {
+	return true
+}
