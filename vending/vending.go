@@ -11,9 +11,6 @@ func (vendingMachine VendingMachine) BuyDrink(item string) (string, int) {
 	change := vendingMachine.calculateChange(price)
 	return item, change
 }
-func (vendingMachine VendingMachine) getDrinkPrice(item string) int {
-	return 8
-}
 
 func (vendingMachine VendingMachine) canBuyDrink(price int) bool {
 	return true
@@ -24,5 +21,5 @@ func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
 }
 
 func (vendingMachine VendingMachine) getDrinkPrice(drink string) int {
-	return 15
+	return vendingMachine.Drinks[drink]
 }
