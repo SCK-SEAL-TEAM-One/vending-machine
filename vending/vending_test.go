@@ -76,3 +76,17 @@ func Test_CanBuyDrink_Input_Price_15_Should_True(t *testing.T) {
 		t.Errorf("Expect %v but got %v", expected, actual)
 	}
 }
+
+func Test_CanBuyDrink_Input_Price_15_Should_False(t *testing.T) {
+	expected := false
+	drinkPrice := 15
+	vendingMachine := VendingMachine{
+		TotalBalance: 10,
+	}
+
+	actual := vendingMachine.canBuyDrink(drinkPrice)
+
+	if expected != actual {
+		t.Errorf("Expect %v but got %v", expected, actual)
+	}
+}
