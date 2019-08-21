@@ -26,3 +26,11 @@ func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
 func (vendingMachine VendingMachine) getDrinkPrice(drink string) int {
 	return vendingMachine.Drinks[drink]
 }
+
+func (vendingMachine *VendingMachine) InsertCoin(coin string) {
+	vendingMachine.TotalBalance += getCoinsValue(coin)
+}
+
+func getCoinsValue(coin string) int {
+	return 10
+}
