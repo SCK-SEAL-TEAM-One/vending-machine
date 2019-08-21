@@ -1,8 +1,9 @@
 package vending
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *testing.T) {
@@ -32,9 +33,7 @@ func Test_BuyDrink_Input_TotalBalance_8_Item_DW_Should_Be_Item_DW_No_Change(t *t
 	if expectedItem != actualItem {
 		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
-	if reflect.DeepEqual(expectedChange, actualChange) {
-		t.Errorf("Expect %v but got %v", expectedChange, actualChange)
-	}
+	assert.Equal(t, expectedChange, actualChange, "Expect %v but got %v", expectedChange, actualChange)
 }
 
 func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *testing.T) {
@@ -64,9 +63,7 @@ func Test_BuyDrink_Input_TotalBalance_20_Item_CF_Should_Be_Item_CF_Change_F(t *t
 		t.Errorf("Expect %s but got %s", expectedItem, actualItem)
 	}
 
-	if reflect.DeepEqual(expectedChange, actualChange) {
-		t.Errorf("Expect %v but got %v", expectedChange, actualChange)
-	}
+	assert.Equal(t, expectedChange, actualChange, "Expect %v but got %v", expectedChange, actualChange)
 }
 
 func Test_CalculateChange_Input_TotalBalance_20_DrinkPrice_15_Should_Be_5(t *testing.T) {
@@ -172,9 +169,7 @@ func Test_GetChangeCoins_Input_Change_10_Should_Be_T(t *testing.T) {
 
 	actual := vendingMachine.getChangeCoins(change)
 
-	if reflect.DeepEqual(expected, actual) {
-		t.Errorf("Expect %v but got %v", expected, actual)
-	}
+	assert.Equal(t, expected, actual, "Expect %v but got %v", expected, actual)
 }
 
 func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
