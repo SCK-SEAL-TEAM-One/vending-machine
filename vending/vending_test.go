@@ -174,7 +174,14 @@ func Test_GetChangeCoins_Input_Change_10_Should_Be_T(t *testing.T) {
 
 func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
 	expected := 20
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
 	vendingMachine := VendingMachine{
+		Coins:        coins,
 		TotalBalance: 0,
 	}
 	vendingMachine.InsertCoin("T")
@@ -188,7 +195,14 @@ func Test_InsertCoin_Input_T_T_Should_Be_20(t *testing.T) {
 
 func Test_InsertCoin_Input_F_TW_O_Should_Be_8(t *testing.T) {
 	expected := 8
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
 	vendingMachine := VendingMachine{
+		Coins:        coins,
 		TotalBalance: 0,
 	}
 	vendingMachine.InsertCoin("F")
@@ -196,6 +210,27 @@ func Test_InsertCoin_Input_F_TW_O_Should_Be_8(t *testing.T) {
 	vendingMachine.InsertCoin("O")
 
 	actual := vendingMachine.TotalBalance
+
+	if expected != actual {
+		t.Errorf("Expect %d but got %d", expected, actual)
+	}
+}
+
+func Test_GetCoinValue_Input_Coin_F_Should_Be_5(t *testing.T) {
+	expected := 5
+	coin := "F"
+	coins := map[string]int{
+		"T":  10,
+		"F":  5,
+		"TW": 2,
+		"O":  1,
+	}
+	vendingMachine := VendingMachine{
+		Coins: coins,
+	}
+
+	actual := vendingMachine.getCoinValue(coin)
+
 	if expected != actual {
 		t.Errorf("Expect %d but got %d", expected, actual)
 	}
