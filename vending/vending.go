@@ -7,9 +7,11 @@ type VendingMachine struct {
 
 func (vendingMachine VendingMachine) BuyDrink(item string) (string, int) {
 	price := vendingMachine.getDrinkPrice(item)
-	vendingMachine.canBuyDrink(price)
-	change := vendingMachine.calculateChange(price)
-	return item, change
+	if vendingMachine.canBuyDrink(price) {
+		change := vendingMachine.calculateChange(price)
+		return item, change
+	}
+	return "", vendingMachine.TotalBalance
 }
 
 func (vendingMachine VendingMachine) canBuyDrink(price int) bool {
