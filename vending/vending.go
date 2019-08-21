@@ -20,5 +20,5 @@ func (vendingMachine VendingMachine) canBuyDrink(price int) bool {
 }
 
 func (vendingMachine VendingMachine) calculateChange(drinkPrice int) int {
-	return 5
+	return vendingMachine.TotalBalance - drinkPrice
 }
