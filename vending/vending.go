@@ -3,6 +3,7 @@ package vending
 type VendingMachine struct {
 	Drinks       map[string]int
 	TotalBalance int
+	Coins        map[string]int
 }
 
 func (vendingMachine VendingMachine) BuyDrink(item string) (string, int) {
